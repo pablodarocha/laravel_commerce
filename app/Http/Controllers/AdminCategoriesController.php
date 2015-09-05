@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
-class WelcomeController extends Controller
+class AdminCategoriesController extends Controller
 {
-	private $categories;
+    private $categories;
 	public function __construct(Category $category)
 	{
 		$this->categories = $category;
@@ -22,23 +22,10 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        //
+        $categories = $this->categories->all();
+
+        return view('admin.categories', compact('categories'));
     }
-
-	public function example()
-	{
-//		$nome = 'Pablo';
-//		$sobrenome = 'da Rocha';
-//		return view('example', compact('nome', 'sobrenome'));
-
-		//chamada estática
-		//$categories = Category::all();
-
-		//Injecao de dependencia
-		$categories = $this->categories->all();
-
-		return view('example', compact('categories'));
-	}
 
     /**
      * Show the form for creating a new resource.

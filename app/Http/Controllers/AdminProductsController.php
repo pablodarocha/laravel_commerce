@@ -2,19 +2,19 @@
 
 namespace CodeCommerce\Http\Controllers;
 
-use CodeCommerce\Category;
+use CodeCommerce\Product;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
-class WelcomeController extends Controller
+class AdminProductsController extends Controller
 {
-	private $categories;
-	public function __construct(Category $category)
-	{
-		$this->categories = $category;
-	}
+    private $products;
+    public function __construct(Product $product)
+    {
+        $this->products = $product;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,23 +22,10 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->products->all();
+
+        return view('admin.products', compact('products'));
     }
-
-	public function example()
-	{
-//		$nome = 'Pablo';
-//		$sobrenome = 'da Rocha';
-//		return view('example', compact('nome', 'sobrenome'));
-
-		//chamada estática
-		//$categories = Category::all();
-
-		//Injecao de dependencia
-		$categories = $this->categories->all();
-
-		return view('example', compact('categories'));
-	}
 
     /**
      * Show the form for creating a new resource.
