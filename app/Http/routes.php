@@ -19,20 +19,23 @@ Route::get('/', 'WelcomeController@index');
 
 //Route::get('exemplo', 'WelcomeController@example');
 
-Route::get('admin/categories', 'AdminCategoriesController@index');
-
-Route::get('admin/products', 'AdminProductsController@index');
-
 // fazer a validacao para todas as rotas que tiverem id como parametro
 Route::pattern('id', '[0-9]+');
 //iria fazer um patter para o nome receber apenas letras, mas o nome de um produto pode conter numeros
 
 Route::group(['prefix' => 'admin'], function() {
+	Route::get('categories', [
+		'as'    => 'categoriesAdmin',
+		'uses'  => 'AdminCategoriesController@index'
+	]);
+	Route::get('products', [
+		'as'    => 'productsAdmin',
+		'uses'  => 'AdminProductsController@index'
+	]);
 	Route::get('categories/{id?}', [
 			'as'    => 'categories',
 			'uses'  => 'CategoriesController@index'
-		]
-	);
+	]);
 	Route::get('products/{id?}', [
 		'as'    => 'products',
 		'uses'  => 'ProductsController@index'
