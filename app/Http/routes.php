@@ -30,6 +30,9 @@ Route::pattern('id', '[0-9]+');
 //]);
 
 Route::group(['prefix' => 'admin'], function() {
+    /*
+     * categories admin
+     */
     Route::group(['prefix' => 'categories'], function() {
         Route::get('', [
             'as'    => 'categories',
@@ -56,11 +59,19 @@ Route::group(['prefix' => 'admin'], function() {
             'uses'  => 'CategoriesController@update'
         ]);
     });
-
-	Route::get('products', [
-		'as'    => 'productsAdmin',
-		'uses'  => 'AdminProductsController@index'
-	]);
+    /*
+     * products admin
+     */
+    Route::group(['prefix' => 'products'], function() {
+        Route::get('', [
+            'as'    => 'products',
+            'uses'  => 'ProductsController@index'
+        ]);
+//        Route::get('products', [
+//            'as' => 'productsAdmin',
+//            'uses' => 'AdminProductsController@index'
+//        ]);
+    });
 //ROTAS - FASE 3
 //	Route::get('categories/{id?}', [
 //			'as'    => 'categories',
