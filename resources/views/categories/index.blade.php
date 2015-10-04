@@ -9,6 +9,7 @@
     <a href="{{route('categories.create')}}" class="btn btn-primary">New Category</a>
     <br>
     <br>
+
     <table class="table">
       <tr>
         <th>ID</th>
