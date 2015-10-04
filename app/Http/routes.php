@@ -23,21 +23,51 @@ Route::get('/', 'WelcomeController@index');
 Route::pattern('id', '[0-9]+');
 //iria fazer um patter para o nome receber apenas letras, mas o nome de um produto pode conter numeros
 
+//CRUD - FASE 4
+//Route::get('categories', [
+//   'as'     => 'categoriesUser',
+//    'uses'  => 'CategoriesController@index'
+//]);
+
 Route::group(['prefix' => 'admin'], function() {
-	Route::get('categories', [
-		'as'    => 'categoriesAdmin',
-		'uses'  => 'AdminCategoriesController@index'
-	]);
+    Route::group(['prefix' => 'categories'], function() {
+        Route::get('', [
+            'as'    => 'categories',
+            'uses'  => 'CategoriesController@index'
+        ]);
+        Route::post('', [
+            'as'    => 'categories.store',
+            'uses'  => 'CategoriesController@store'
+        ]);
+        Route::get('create', [
+            'as'    => 'categories.create',
+            'uses'  => 'CategoriesController@create'
+        ]);
+        Route::get('{id}/destroy', [
+            'as'    => 'categories.destroy',
+            'uses'  => 'CategoriesController@destroy'
+        ]);
+        Route::get('{id}/edit', [
+            'as'    => 'categories.edit',
+            'uses'  => 'CategoriesController@edit'
+        ]);
+        Route::put('{id}/update', [
+            'as'    => 'categories.update',
+            'uses'  => 'CategoriesController@update'
+        ]);
+    });
+
 	Route::get('products', [
 		'as'    => 'productsAdmin',
 		'uses'  => 'AdminProductsController@index'
 	]);
-	Route::get('categories/{id?}', [
-			'as'    => 'categories',
-			'uses'  => 'CategoriesController@index'
-	]);
-	Route::get('products/{id?}', [
-		'as'    => 'products',
-		'uses'  => 'ProductsController@index'
-	]);
+//ROTAS - FASE 3
+//	Route::get('categories/{id?}', [
+//			'as'    => 'categories',
+//			'uses'  => 'CategoriesController@index'
+//	]);
+//	Route::get('products/{id?}', [
+//		'as'    => 'products',
+//		'uses'  => 'ProductsController@index'
+//	]);
 });
