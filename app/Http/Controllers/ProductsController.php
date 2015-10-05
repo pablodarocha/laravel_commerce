@@ -34,7 +34,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -43,9 +43,14 @@ class ProductsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Requests\ProductRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $product = $this->products->fill($input);
+        $product->save();
+
+        return redirect()->route('products');
     }
 
     /**
