@@ -79,6 +79,14 @@ Route::group(['prefix' => 'admin'], function() {
             'as'    => 'products.destroy',
             'uses'  => 'ProductsController@destroy'
         ]);
+        Route::get('{id}/edit', [
+            'as'    => 'products.edit',
+            'uses'  => 'ProductsController@edit'
+        ]);
+        Route::put('{id}/update', [
+            'as'    => 'products.update',
+            'uses'  => 'ProductsController@update'
+        ]);
 //        Route::get('products', [
 //            'as' => 'productsAdmin',
 //            'uses' => 'AdminProductsController@index'

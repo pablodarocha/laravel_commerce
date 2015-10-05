@@ -72,7 +72,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = $this->products->find($id);
+
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -82,9 +84,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\ProductRequest $request, $id)
     {
-        //
+        $this->products->find($id)->update($request->all());
+
+        return redirect()->route('products');
     }
 
     /**
