@@ -75,6 +75,10 @@ Route::group(['prefix' => 'admin'], function() {
             'as'    => 'products.create',
             'uses'  => 'ProductsController@create'
         ]);
+        Route::get('{id}/destroy', [
+            'as'    => 'products.destroy',
+            'uses'  => 'ProductsController@destroy'
+        ]);
 //        Route::get('products', [
 //            'as' => 'productsAdmin',
 //            'uses' => 'AdminProductsController@index'
