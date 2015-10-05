@@ -67,6 +67,14 @@ Route::group(['prefix' => 'admin'], function() {
             'as'    => 'products',
             'uses'  => 'ProductsController@index'
         ]);
+        Route::post('', [
+            'as'    => 'products.store',
+            'uses'  => 'ProductsController@store'
+        ]);
+        Route::get('create', [
+            'as'    => 'products.create',
+            'uses'  => 'ProductsController@create'
+        ]);
 //        Route::get('products', [
 //            'as' => 'productsAdmin',
 //            'uses' => 'AdminProductsController@index'
