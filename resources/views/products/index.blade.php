@@ -7,7 +7,7 @@
   <div class="container">
     <h1>Products</h1>
 
-    <a href="#" class="btn btn-primary">New Product</a>
+    <a href="{{ route('products.create') }}" class="btn btn-primary">New Product</a>
     <br>
     <br>
 
@@ -23,16 +23,18 @@
       </tr>
 
       @foreach($products as $product)
-        <td>{{ $product->id }}</td>
-        <td>{{ $product->name }}</td>
-        <td>{{ $product->description }}</td>
-        <td>{{ $product->price }}</td>
-        <td>{{ $product->featured }}</td>
-        <td>{{ $product->recommend }}</td>
-        <td>
-          <a href="#" class="btn btn-success">Edit</a>
-          <a href="#" class="btn btn-danger">Delete</a>
-        </td>
+        <tr>
+          <td>{{ $product->id }}</td>
+          <td>{{ $product->name }}</td>
+          <td>{{ $product->description }}</td>
+          <td>{{ $product->price }}</td>
+          <td>{{ $product->featured }}</td>
+          <td>{{ $product->recommend }}</td>
+          <td>
+            <a href="#" class="btn btn-success">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
       @endforeach
 
     </table>

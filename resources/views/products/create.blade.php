@@ -1,41 +1,52 @@
 @extends('templates.app')
 
-@section('title', 'Products List')
+@section('title', 'New Product')
 
 @section('content')
-
   <div class="container">
-    <h1>Products</h1>
+    <h1>Add Product</h1>
 
-    <a href="#" class="btn btn-primary">New Product</a>
-    <br>
-    <br>
+    @if($errors->any())
+      <ul class="alert">
+        @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    @endif
 
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Featured</th>
-        <th>Recommend</th>
-        <th>Action</th>
-      </tr>
+    {!! Form::open(['route' => 'products.store']) !!}
+      <div class="form-group">
+        {!! Form::label('name', 'Name:') !!}
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+      </div>
 
-      @foreach($products as $product)
-        <td>{{ $product->id }}</td>
-        <td>{{ $product->name }}</td>
-        <td>{{ $product->description }}</td>
-        <td>{{ $product->price }}</td>
-        <td>{{ $product->featured }}</td>
-        <td>{{ $product->recommend }}</td>
-        <td>
-          <a href="#" class="btn btn-success">Edit</a>
-          <a href="#" class="btn btn-danger">Delete</a>
-        </td>
-      @endforeach
+      <div class="form-group">
+        {!! Form::label('description', 'Description:') !!}
+        {!! Form::text('description', null, ['class' => 'form-control']) !!}
+      </div>
 
-    </table>
+      <div class="form-group">
+        {!! Form::label('price', 'Price:') !!}
+        {!! Form::text('price', null, ['class' => 'form-control']) !!}
+      </div>
 
+      <div class="form-group">
+        {!! Form::label('Featured?') !!}
+        {!! Form::radio('featured', 1, ['class' => 'form-control']) !!} Yes
+        {!! Form::radio('featured', 0, ['class' => 'form-control']) !!} No
+      </div>
+
+      <div class="form-group">
+        {!! Form::label('Recommend?') !!}
+        {!! Form::radio('recommend', 1, ['class' => 'form-control']) !!} Yes
+        {!! Form::radio('recommend', 0, ['class' => 'form-control']) !!} No
+      </div>
+
+      <div class="form-group">
+        {!! Form::submit('Add Product', ['class' => 'btn btn-primary form-control']) !!}
+        <br><br>
+        <a href="{{ route('products') }}" class="btn btn-default form-control">Back to Products</a>
+      </div>
+      {!! Form::close() !!}
   </div>
 @endsection
