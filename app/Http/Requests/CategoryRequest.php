@@ -24,8 +24,18 @@ class CategoryRequest extends Request
     public function rules()
     {
         return [
-            'name'          => 'required|min:5',
+            'name'          => 'required | min:5 | max:80',
             'description'   => 'required'
         ];
     }
+
+//    public function messages()
+//    {
+//        return [
+//            'name.required'         => 'O campo Name é obrigatório',
+//            'name.min'              => 'O campo Name deve possuir no mínimo 5 letras',
+//            'name.max'              => 'O campo Name deve possuir no máximo 80 letras',
+//            'description.required'  => 'O campo description é obrigatório'
+//        ];
+//    }
 }
