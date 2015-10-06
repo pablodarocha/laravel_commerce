@@ -2,20 +2,20 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use CodeCommerce\Category;
+use CodeCommerce\Product;
 /**
  * Created by PhpStorm.
  * User: pablo da rocha
  * Date: 05/10/2015
  * Time: 09:46
  */
-class CategoryTableSeeder extends \Illuminate\Database\Seeder
+class ProductTableSeeder extends \Illuminate\Database\Seeder
 {
     public function run()
     {
-        DB::table('categories')->truncate();
+        DB::table('products')->truncate();
 
-        factory('CodeCommerce\Category', 15)->create();
+        factory('CodeCommerce\Product', 20)->create();
 
     }
 }
